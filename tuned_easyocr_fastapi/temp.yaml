@@ -1,0 +1,63 @@
+lang_list:
+  - ko
+  - en
+
+character_list: "%()*,-./0123456789:MNOSU[]m~·‘’“”․※ⅠⅡⅢ→∼①②③⑤⑥□△○「」ㅇㆍ㉚㉛員商海漁船部가각간갈감강갖같개거건검것게격겪견결경계고곳공과곽관교구국군굴권규그근금급기긴길김까께끈끌끼나낚난날낡남났낮내냉넘년노농높느는늘능니닌님다단달당대더덕던데도독돌동되된될됨두둘뒤드든들등디따때또뜻라란람랑래량러런럽려력련령례로록론료류률르른를릉리림립마만말망매머며면명모목못무문물므미민밀및바박밖반받발방배백번벌범법벤변별병보복본부북분불붙비빛사삭산살삼상생서석선설섭성세션소속송숏수술쉼스습승시식신실심싯싸써아악안않았앙액야약양어억언업없었에엔여역연열였영예옥온올와완외요용우욱운움원월위유육윤율융으은을음응의이익인일임입있자작잠잡장재쟁저적전절점정제조족존종주준줄중증지직진집징차찬참채책처척청체쳤초촉촌총최추축출충취측치칙칠침칭케켜큰키타탁태택터털토톤통투트특판펴편평폐포폰폼표품프플피필하학한할함합항해했행향허헌험혁현협형호혼홍화확환활황회획효후훈휘휴흠희히：｢｣･"
+
+# ko_filtered_config.yaml (자동 감지용)
+number: '0123456789'
+symbol: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ €"
+lang_char: 'None'  # None이면 train_data에서 문자 자동 추출
+experiment_name: 'ko_filtered'
+
+# 학습용 데이터 폴더
+train_data: 'all_data/train'
+valid_data: 'all_data/valid'
+
+manualSeed: 1111
+workers: 2            # Windows 안정화 위해 0
+batch_size: 32
+num_iter: 10000
+valInterval: 200
+saved_model: ''       # 이어서 학습할 경우 경로 지정
+FT: True
+optim: False
+lr: 1.0
+beta1: 0.9
+rho: 0.95
+eps: 1e-8
+grad_clip: 5
+
+# Data processing
+select_data: ''        # 전체 데이터 사용
+batch_ratio: '1'
+total_data_usage_ratio: 1.0
+batch_max_length: 70
+imgH: 64
+imgW: 600
+rgb: False
+contrast_adjust: 0.0
+sensitive: True
+PAD: True
+data_filtering_off: False
+
+network_params:
+  Transformation: 'None'
+  FeatureExtraction: 'VGG'
+  SequenceModeling: 'BiLSTM'
+  Prediction: 'CTC'
+  num_fiducial: 20
+  input_channel: 1
+  output_channel: 256
+  hidden_size: 256
+  decode: 'greedy'
+  new_prediction: False
+  freeze_FeatureFxtraction: False
+  freeze_SequenceModeling: False
+
+# -------------------------
+# 추가: 샘플 수 자동 감지
+# -------------------------
+# 아래는 train.py에서 처리
+# train_data 안 모든 labels.csv 읽어서 character set 구성
+# train_dataset.nSamples, valid_dataset.nSamples로 학습/검증 샘플 갯수 자동 감지
