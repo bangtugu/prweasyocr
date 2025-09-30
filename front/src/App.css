@@ -1,38 +1,159 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  /* background-image 속성은 그대로 둡니다. */
+  background-image: url('../public/national_assembly_meeting_room.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  box-sizing: border-box;
+
+  /* 새로 추가하거나 수정할 부분 */
+  position: relative; /* 자식 요소인 오버레이를 위해 relative 설정 */
+  z-index: 1; /* 오버레이가 위에 오도록 z-index 설정 */
 }
 
-.App-link {
-  color: #61dafb;
+/* 배경 이미지 위에 덮을 반투명 오버레이 */
+.App::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* 검은색 30% 투명도 (70% 밝기 효과) */
+  z-index: -1; /* 배경 이미지 바로 위에 오도록 z-index 설정 */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 기존 헤더와 메인 컨텐츠의 반투명 오버레이는 유지 */
+.App-header {
+  margin-bottom: 30px;
+  background-color: rgba(0, 0, 0, 0.5); /* 기존 유지 (필요에 따라 조절) */
+  padding: 10px 20px;
+  border-radius: 8px;
+  z-index: 1; /* 컨텐츠가 오버레이 위에 오도록 */
+}
+
+.App-main {
+  background-color: rgba(0, 0, 0, 0.6); /* 기존 유지 (필요에 따라 조절) */
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1; /* 컨텐츠가 오버레이 위에 오도록 */
+}
+
+.upload-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  align-items: center;
+}
+
+.upload-section input[type="file"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: black; /* 파일 선택 버튼 텍스트 색상 */
+}
+
+.upload-section button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-section button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.upload-section button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff6347; /* 밝은 빨간색으로 오류 메시지 강조 */
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.text-container {
+  width: 100%;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.1); /* 텍스트 컨테이너 배경에 반투명 오버레이 */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.text-container h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: white;
+  text-align: center;
+}
+
+.scrollable-text {
+  max-height: 500px; /* 스크롤 컨테이너의 최대 높이 */
+  overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 생성 */
+  overflow-x: hidden;
+  border: 1px solid #444;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.7); /* 텍스트 영역 배경색 */
+  border-radius: 5px;
+  color: #eee; /* 텍스트 색상 */
+  line-height: 1.6;
+  white-space: normal;       /* 자동 줄바꿈 */
+  word-wrap: break-word;     /* 단어 단위로 줄바꿈 가능 */
+}
+
+.scrollable-text pre {
+  white-space: pre-wrap;  /* 줄바꿈 유지 + 화면 너비에 따라 자동 줄바꿈 */
+  word-wrap: break-word;  /* 너무 긴 단어 줄바꿈 */
+  margin: 0;              /* 기본 마진 제거 */
+}
+
+/* 스크롤바 스타일링 (웹킷 브라우저) */
+.scrollable-text::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollable-text::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 10px;
+}
+
+.scrollable-text::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.scrollable-text::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
