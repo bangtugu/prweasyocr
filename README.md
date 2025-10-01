@@ -10,11 +10,27 @@
 conda create -n env_name python=3.8 -y
 # conda activate env_name
 conda install pytorch=1.7.1 torchvision=0.8.2 cudatoolkit=10.2 -c pytorch -y
+'''
 
+'''
 cd back
 pip install -r requirements.txt
 cd ../front
 npm install
+```
+
+
+
+## 실행
+
+```cmd
+# back 디렉토리에서
+python main.py # 내부 설정 포트 8001으로 실행
+```
+
+```cmd
+# front 디렉토리에서
+npm start
 ```
 
 
@@ -89,9 +105,9 @@ easyocr은 하드웨어 이슈로 인해 사용 제한될듯.
 
 
 
-tesseract는 한글자 한글자는 비교적 정확해도 중간중간 영어로 아예 날려먹는게 치명적이고, (띄어쓰기도 다 날아감)
+tesseract는 한글자 한글자는 비교적 정확해도 중간중간 영어로 아예 날려먹는게 치명적이고,
 
-easyocr은 영어로는 덜바꿔먹어도 오탈자가 너무 많고 gpu상 사용이 힘들다.
+easyocr은 영어로는 덜바꿔먹어도 오탈자가 너무 많고 gpu 환경상 사용이 힘들다.
 
 오탈자 너무 많으면 띄어쓰기도 교정 안될거같은데?
 
