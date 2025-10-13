@@ -33,7 +33,7 @@ python main.py # 내부 설정 포트 8001으로 실행
 
 ## pytesseract와 비교
 
- [한국고등직업교육학회.pdf](data\한국고등직업교육학회.pdf) 
+### DATA1 
 
 ##### pytesseract
 
@@ -49,7 +49,7 @@ python main.py # 내부 설정 포트 8001으로 실행
 
 
 
- [회의록.pdf](data\회의록.pdf) 
+### DATA2
 
 ##### pytesseract
 
