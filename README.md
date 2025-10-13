@@ -6,10 +6,11 @@
 
 ```cmd
 # 가상환경 생성 (선택사항)
-# 본인 gpu에 맞는 cuda -> torch -> python 버전으로 환경 설정
-conda create -n env_name python=3.8 -y
-# conda activate env_name
-conda install pytorch=1.7.1 torchvision=0.8.2 cudatoolkit=10.2 -c pytorch -y
+# gpu 활용시 - 본인 gpu에 맞는 cuda -> torch -> python 버전으로 환경 설정
+conda create -n env_name python=3.10 -y
+conda activate env_name
+# 아래 torch, torchvision 등 버전은 예시. gtx750환경에서 시도한 버전이나, vram부족으로 구동 안됨. 본인 gpu 환경에 맞는 버전으로 설치
+# conda install pytorch=1.7.1 torchvision=0.8.2 cudatoolkit=10.2 -c pytorch -y
 '''
 
 '''
@@ -24,11 +25,6 @@ pip install -r requirements.txt
 ```cmd
 # back 디렉토리에서
 python main.py # 내부 설정 포트 8001으로 실행
-```
-
-```cmd
-# front 디렉토리에서
-npm start
 ```
 
 
